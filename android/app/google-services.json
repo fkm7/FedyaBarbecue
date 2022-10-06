@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "753238647374",
+    "project_id": "fedya-shaslik",
+    "storage_bucket": "fedya-shaslik.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753238647374:android:4fd61a876330c9a024591f",
+        "android_client_info": {
+          "package_name": "uz.ds.fedya_shashlik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753238647374-9dp82hrrboj7o70bs55fpv2bdtp1nvh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcKoBdfVb1yFpB7XplW5vUFbxJc-cKNA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753238647374-9dp82hrrboj7o70bs55fpv2bdtp1nvh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

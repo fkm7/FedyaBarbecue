@@ -76,9 +76,7 @@ class Order {
         total: json["total"],
         comment: json["comment"],
         updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        orderItemObj: json["order_item_obj"] == null
-            ? null
-            : List<OrderItemObj>.from(json["order_item_obj"].map((x) => OrderItemObj.fromJson(x))),
+        orderItemObj: json["order_item_obj"] == null ? null : List<OrderItemObj>.from(json["order_item_obj"].map((x) => OrderItemObj.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -132,7 +130,7 @@ class OrderItemObj {
         "count": count,
         "total": total,
         "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "product_obj": productObj == null ? null : productObj?.toJson(),
+        "product_obj": productObj?.toJson(),
       };
 }
 
@@ -167,11 +165,8 @@ class OrderItemObjProductObj {
         selfPrice: json["self_price"],
         count: json["count"],
         updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        productPhotoObj: json["product_photo_obj"] == null
-            ? null
-            : List<ProductPhotoObj>.from(json["product_photo_obj"].map((x) => ProductPhotoObj.fromJson(x))),
-        productCategoryObj:
-            json["product_category_obj"] == null ? null : ProductCategoryObj.fromJson(json["product_category_obj"]),
+        productPhotoObj: json["product_photo_obj"] == null ? null : List<ProductPhotoObj>.from(json["product_photo_obj"].map((x) => ProductPhotoObj.fromJson(x))),
+        productCategoryObj: json["product_category_obj"] == null ? null : ProductCategoryObj.fromJson(json["product_category_obj"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -210,9 +205,7 @@ class ProductCategoryObj {
         image: json["image"],
         parent: json["parent"],
         updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        productObj: json["product_obj"] == null
-            ? null
-            : List<ProductCategoryObjProductObj>.from(json["product_obj"].map((x) => ProductCategoryObjProductObj.fromJson(x))),
+        productObj: json["product_obj"] == null ? null : List<ProductCategoryObjProductObj>.from(json["product_obj"].map((x) => ProductCategoryObjProductObj.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

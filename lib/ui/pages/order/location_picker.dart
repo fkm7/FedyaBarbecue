@@ -13,7 +13,7 @@ class LocationPicker extends StatefulWidget {
   static const route = '/address';
 
   @override
-  _LocationPickerState createState() => _LocationPickerState();
+  State<StatefulWidget> createState() => _LocationPickerState();
 }
 
 class _LocationPickerState extends State<LocationPicker> {
@@ -61,15 +61,15 @@ class _LocationPickerState extends State<LocationPicker> {
             right: 20.0,
             bottom: _fabHeight,
             child: FloatingActionButton(
-              child: Icon(
-                Icons.gps_fixed,
-                color: Theme.of(context).primaryColor,
-              ),
               onPressed: () async {
                 var latLang = await Geolocator.getCurrentPosition();
                 mapController!.animateCamera(CameraUpdate.newLatLng(LatLng(latLang.latitude, latLang.longitude)));
               },
               backgroundColor: Colors.white,
+              child: Icon(
+                Icons.gps_fixed,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           ),
         ],
@@ -138,11 +138,11 @@ class _LocationPickerState extends State<LocationPicker> {
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
                     controller: addressController,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     onChanged: (value) => address = value,
                     decoration: InputDecoration(
                       labelText: 'Текущий адрес',
-                      labelStyle: Theme.of(context).textTheme.bodyText1,
+                      labelStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
@@ -194,11 +194,11 @@ class _LocationPickerState extends State<LocationPicker> {
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
                     controller: landmarkController,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                     onChanged: (value) => landmark = value,
                     decoration: InputDecoration(
                       labelText: 'Ориентир',
-                      labelStyle: Theme.of(context).textTheme.bodyText1,
+                      labelStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
                 ),
@@ -317,16 +317,9 @@ class _LocationPickerState extends State<LocationPicker> {
       ]);
 
   String getAddress(List<Placemark> placeMark) {
-    final String region = placeMark[1].subAdministrativeArea != null
-        ? (placeMark[1].subAdministrativeArea!.isNotEmpty ? placeMark[1].subAdministrativeArea! : '')
-        : '';
-    final String street =
-        placeMark[1].thoroughfare != null ? (placeMark[1].thoroughfare!.isNotEmpty ? placeMark[1].thoroughfare! : '') : '';
-    final String home = placeMark[1].subThoroughfare != null
-        ? (placeMark[1].subThoroughfare!.isNotEmpty ? placeMark[1].subThoroughfare! : '')
-        : '';
-    return region +
-        (street != '' ? (region != '' ? ', ' + street : street) : '') +
-        (home != '' ? (street != '' ? ', ' + home : home) : '');
+    final String region = placeMark[1].subAdministrativeArea != null ? (placeMark[1].subAdministrativeArea!.isNotEmpty ? placeMark[1].subAdministrativeArea! : '') : '';
+    final String street = placeMark[1].thoroughfare != null ? (placeMark[1].thoroughfare!.isNotEmpty ? placeMark[1].thoroughfare! : '') : '';
+    final String home = placeMark[1].subThoroughfare != null ? (placeMark[1].subThoroughfare!.isNotEmpty ? placeMark[1].subThoroughfare! : '') : '';
+    return region + (street != '' ? (region != '' ? ', $street' : street) : '') + (home != '' ? (street != '' ? ', $home' : home) : '');
   }
 }

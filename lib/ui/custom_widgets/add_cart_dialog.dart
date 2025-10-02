@@ -20,7 +20,7 @@ class AddCartDialog extends StatefulWidget {
   final Product product;
 
   @override
-  _AddCartDialogState createState() => _AddCartDialogState();
+  State<StatefulWidget> createState() => _AddCartDialogState();
 }
 
 class _AddCartDialogState extends State<AddCartDialog> {
@@ -44,7 +44,7 @@ class _AddCartDialogState extends State<AddCartDialog> {
                   )
                 : CachedNetworkImage(
                     imageUrl: widget.product.productPhotoObj.first.photo ?? '',
-                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                     errorWidget: (context, url, error) => Image.asset('assets/error.png'),
                     height: 200,
                     fit: widget.product.productPhotoObj.first.photo != null ? BoxFit.cover : BoxFit.contain,
@@ -109,7 +109,10 @@ class _AddCartDialogState extends State<AddCartDialog> {
                   context.push(AuthPage.route);
                 }
               },
-              child: Text(AppLocalizations.of(context)!.addCart, style: AppTextStyles.label),
+              child: Text(
+                AppLocalizations.of(context)!.addCart,
+                style: AppTextStyles.label,
+              ),
             ),
           ),
         ],

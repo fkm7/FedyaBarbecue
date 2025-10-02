@@ -20,7 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   static const route = '/home';
 
@@ -76,7 +76,8 @@ class _HomePageState extends State<HomePage> {
                   List<Promo> promos = snapshot.data as List<Promo>;
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 12),
                     child: CarouselSlider.builder(
                       options: CarouselOptions(
                         enlargeCenterPage: true,
@@ -85,15 +86,22 @@ class _HomePageState extends State<HomePage> {
                         viewportFraction: 1,
                       ),
                       itemCount: promos.length,
-                      itemBuilder: (BuildContext context, int index, int realIndex) => Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
+                      itemBuilder:
+                          (BuildContext context, int index, int realIndex) =>
+                              Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0)),
                         clipBehavior: Clip.hardEdge,
                         height: mediaQuery.size.height * .25,
                         width: mediaQuery.size.width,
                         child: CachedNetworkImage(
-                          imageUrl: promos[index].image,
-                          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => Image.asset('assets/error.png'),
+                          imageUrl: promos[index].image == ''
+                              ? 'https://picsum.photos/200/300'
+                              : promos[index].image,
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              Image.asset('assets/error.png'),
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -101,13 +109,16 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
                   clipBehavior: Clip.hardEdge,
                   height: mediaQuery.size.height * .25,
                   width: mediaQuery.size.width,
                   // alignment: Alignment.center,
-                  child: const Card(child: Center(child: CircularProgressIndicator())),
+                  child: const Card(
+                      child: Center(child: CircularProgressIndicator())),
                 );
               }),
           Padding(
@@ -136,7 +147,8 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(left: 18),
                 itemCount: bloc.categories.length,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => CategoryCard(category: bloc.categories[index]),
+                itemBuilder: (context, index) =>
+                    CategoryCard(category: bloc.categories[index]),
               ),
             ),
           ),
@@ -160,7 +172,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Consumer<ProductBloc>(
-              builder: (context, bloc, child) => Column(children: bloc.products.take(4).map((e) => ProductWidget(product: e)).toList())),
+              builder: (context, bloc, child) => Column(
+                  children: bloc.products
+                      .take(4)
+                      .map((e) => ProductWidget(product: e))
+                      .toList())),
           const SizedBox(height: 16.0),
         ],
       ),

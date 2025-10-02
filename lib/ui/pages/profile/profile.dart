@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 enum Gender { male, female }
 
 class ProfilePage extends StatefulWidget {
-   ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   static const route = '/profile';
 
@@ -39,15 +39,9 @@ class _ProfilePageState extends State<ProfilePage> {
       _firstNameController.text = _firstName!;
       _lastNameController.text = _lastName!;
       _mailController.text = _mail ?? '';
-      _genderController.text = _gender != null
-          ? (Gender.values.firstWhere((element) => element == _gender) == Gender.male ? 'Мужчина' : 'Женщина')
-          : '';
+      _genderController.text = _gender != null ? (Gender.values.firstWhere((element) => element == _gender) == Gender.male ? 'Мужчина' : 'Женщина') : '';
       _dateOfBirthController.text = (_dateOfBirth != null
-          ? ((_dateOfBirth!.day < 10 ? '0' + _dateOfBirth!.day.toString() : _dateOfBirth!.day.toString()) +
-              '.' +
-              (_dateOfBirth!.month < 10 ? '0' + _dateOfBirth!.month.toString() : _dateOfBirth!.month.toString()) +
-              '.' +
-              _dateOfBirth!.year.toString())
+          ? ('${_dateOfBirth!.day < 10 ? '0${_dateOfBirth!.day}' : _dateOfBirth!.day.toString()}.${_dateOfBirth!.month < 10 ? '0${_dateOfBirth!.month}' : _dateOfBirth!.month.toString()}.${_dateOfBirth!.year}')
           : '');
     });
   }
@@ -90,8 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 4.0),
                         FutureBuilder(
                           future: UserPreferences.getInstance().getPhoneNumber(),
-                          builder: (context, snapshot) =>
-                              snapshot.hasData ? Text(snapshot.data.toString(), style: AppTextStyles.title0) : const Text(''),
+                          builder: (context, snapshot) => snapshot.hasData ? Text(snapshot.data.toString(), style: AppTextStyles.title0) : const Text(''),
                         ),
                       ],
                     ),
@@ -132,13 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           );
                           if (_dateOfBirth != null) {
                             _dateOfBirthController.text =
-                                (_dateOfBirth!.day < 10 ? '0' + _dateOfBirth!.day.toString() : _dateOfBirth!.day.toString()) +
-                                    '.' +
-                                    (_dateOfBirth!.month < 10
-                                        ? '0' + _dateOfBirth!.month.toString()
-                                        : _dateOfBirth!.month.toString()) +
-                                    '.' +
-                                    _dateOfBirth!.year.toString();
+                                '${_dateOfBirth!.day < 10 ? '0${_dateOfBirth!.day}' : _dateOfBirth!.day.toString()}.${_dateOfBirth!.month < 10 ? '0${_dateOfBirth!.month}' : _dateOfBirth!.month.toString()}.${_dateOfBirth!.year}';
                           }
                         },
                         decoration: InputDecoration(
@@ -241,7 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     UserPreferences.getInstance().saveMail(_mail);
                     UserPreferences.getInstance().saveGender(_gender);
                     if (_phoneNumber != null && _firstName != null && _lastName != null) {
-                      ApiService.getInstance().editName(_phoneNumber!, _firstName! + ' ' + _lastName!);
+                      ApiService.getInstance().editName(_phoneNumber!, '${_firstName!} ${_lastName!}');
                     }
                     Navigator.pop(context);
                   },

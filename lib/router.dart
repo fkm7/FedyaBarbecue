@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:fedya_shashlik/bloc/cart.dart';
 import 'package:fedya_shashlik/bloc/connection/connection_cubit.dart';
 import 'package:fedya_shashlik/data/model/category.dart';
+import 'package:fedya_shashlik/router/go_router_stream.dart';
 import 'package:fedya_shashlik/ui/pages/auth/authentication.dart';
 import 'package:fedya_shashlik/ui/pages/category/categories.dart';
 import 'package:fedya_shashlik/ui/pages/category/category.dart';
@@ -24,7 +27,7 @@ class MyRouter {
 
   late final router = GoRouter(
     refreshListenable: GoRouterRefreshStream(checkerCubit.stream),
-    redirect: (GoRouterState state) {
+    redirect: (context, GoRouterState state) async {
       final stateOfConnection = checkerCubit.state;
       final currentLocation = state.location;
       if (stateOfConnection is InternetConnectionDisconnected && currentLocation != ConnectionLostPage.route) {
@@ -33,22 +36,21 @@ class MyRouter {
       if (stateOfConnection is InternetConnectionConnected && currentLocation == ConnectionLostPage.route) {
         return MainPage.route;
       }
-      return null;
+      return Future.value();
     },
     debugLogDiagnostics: true,
-    urlPathStrategy: UrlPathStrategy.path,
     routes: [
       GoRoute(
         path: SplashPage.route,
-        builder: (context, state) =>  SplashPage(),
+        builder: (context, state) => const SplashPage(),
       ),
       GoRoute(
         path: MainPage.route,
-        builder: (context, state) =>  MainPage(),
+        builder: (context, state) => const MainPage(),
       ),
       GoRoute(
         path: CategoriesPage.route,
-        builder: (context, state) =>  CategoriesPage(),
+        builder: (context, state) => const CategoriesPage(),
       ),
       GoRoute(
         path: CategoryPage.route,
@@ -60,7 +62,7 @@ class MyRouter {
       ),
       GoRoute(
         path: ProductsPage.route,
-        builder: (context, state) =>  ProductsPage(),
+        builder: (context, state) => ProductsPage(),
       ),
       GoRoute(
         path: CartPage.route,
@@ -72,7 +74,7 @@ class MyRouter {
       ),
       GoRoute(
         path: LocationPicker.route,
-        builder: (context, state) =>  LocationPicker(),
+        builder: (context, state) => const LocationPicker(),
       ),
       GoRoute(
         path: AccountPage.route,
@@ -80,11 +82,11 @@ class MyRouter {
       ),
       GoRoute(
         path: AuthPage.route,
-        builder: (context, state) =>  AuthPage(),
+        builder: (context, state) => const AuthPage(),
       ),
       GoRoute(
         path: ProfilePage.route,
-        builder: (context, state) => ProfilePage(),
+        builder: (context, state) => const ProfilePage(),
       ),
       GoRoute(
         path: OrderHistory.route,
@@ -92,7 +94,7 @@ class MyRouter {
       ),
       GoRoute(
         path: ConnectionLostPage.route,
-        builder: (context, state) =>  ConnectionLostPage(),
+        builder: (context, state) => const ConnectionLostPage(),
       ),
     ],
     restorationScopeId: 'app',

@@ -88,13 +88,6 @@ class _EditNumberPageState extends State<EditNumberPage> {
                       height: mediaQuery.size.height * .07,
                       minWidth: mediaQuery.size.width,
                       color: AppColors.yellow,
-                      child: Text(
-                        AppLocalizations.of(context)!.next,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
                       onPressed: phoneNumber.contains(RegExp(r'^(\+998)[0-9]{9}'))
                           ? () async {
                               _phoneController.clear();
@@ -102,6 +95,13 @@ class _EditNumberPageState extends State<EditNumberPage> {
                               status = await Provider.of<ApiService>(context, listen: false).checkPhoneNumber(phoneNumber);
                             }
                           : null,
+                      child: Text(
+                        AppLocalizations.of(context)!.next,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -113,7 +113,7 @@ class _EditNumberPageState extends State<EditNumberPage> {
                 Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Text(
-                    AppLocalizations.of(context)!.enterCodeText + " +998906024795",
+                    "${AppLocalizations.of(context)!.enterCodeText} +998906024795",
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -137,13 +137,6 @@ class _EditNumberPageState extends State<EditNumberPage> {
                       height: mediaQuery.size.height * .08,
                       minWidth: mediaQuery.size.width,
                       color: AppColors.yellow,
-                      child: Text(
-                        AppLocalizations.of(context)!.confirm,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
                       onPressed: phoneNumber.contains(RegExp(r'^(\+998)[0-9]{9}')) && smsCode.length == 4
                           ? () async {
                               int response = await ApiService.getInstance().smsVerification(phoneNumber, smsCode);
@@ -153,6 +146,13 @@ class _EditNumberPageState extends State<EditNumberPage> {
                               }
                             }
                           : null,
+                      child: Text(
+                        AppLocalizations.of(context)!.confirm,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
                 ),

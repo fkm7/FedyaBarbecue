@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class CartProductWidget extends StatelessWidget {
   final CartProduct cartProduct;
 
-  CartProductWidget({Key? key, required this.cartProduct}) : super(key: key);
+  const CartProductWidget({Key? key, required this.cartProduct}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class CartProductWidget extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl: cartProduct.product.productPhotoObj.first.photo ?? '',
-                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Image.asset('assets/error.png'),
                 height: 96.0,
                 width: 96.0,

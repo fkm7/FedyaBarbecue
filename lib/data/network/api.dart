@@ -19,11 +19,7 @@ class API {
 
   static const String host = '85.143.175.111';
 
-  // static const String host = '192.168.0.171';
-
   static const int port = 4411;
-
-  // static const int port = 8000;
 
   Uri tokenUri() => Uri(
         scheme: 'http',

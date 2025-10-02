@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderHistory extends StatelessWidget {
-   OrderHistory({Key? key}) : super(key: key);
+  const OrderHistory({Key? key}) : super(key: key);
 
   static const route = '/orderHistory';
 
@@ -51,10 +51,9 @@ class OrderHistory extends StatelessWidget {
                         width: 256,
                       ))
                     : ListView.builder(
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                         itemCount: response.results!.length,
-                        itemBuilder: (context, index) =>
-                            OrderCard(order: response.results![response.results!.length - index - 1]),
+                        itemBuilder: (context, index) => OrderCard(order: response.results![response.results!.length - index - 1]),
                       );
               }
               break;
@@ -85,7 +84,7 @@ class OrderHistory extends StatelessWidget {
 }
 
 class OrderCard extends StatelessWidget {
-   OrderCard({Key? key, required this.order}) : super(key: key);
+  const OrderCard({Key? key, required this.order}) : super(key: key);
 
   final Order order;
 
@@ -113,22 +112,21 @@ class OrderCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  AppLocalizations.of(context)!.applicationTime +
-                      ': ${order.created!.hour}:${order.created!.minute < 10 ? '0' + order.created!.minute.toString() : order.created!.minute}  ${order.created!.day < 10 ? '0' + order.created!.day.toString() : order.created!.day}.${order.created!.month < 10 ? '0' + order.created!.month.toString() : order.created!.month}.${order.created!.year}',
+                  '${AppLocalizations.of(context)!.applicationTime}: ${order.created!.hour}:${order.created!.minute < 10 ? '0${order.created!.minute}' : order.created!.minute}  ${order.created!.day < 10 ? '0${order.created!.day}' : order.created!.day}.${order.created!.month < 10 ? '0${order.created!.month}' : order.created!.month}.${order.created!.year}',
                   style: AppTextStyles.title0,
                 ),
                 const SizedBox(height: 4.0),
-                Text(AppLocalizations.of(context)!.applicationStatus + ': ${order.status}', style: AppTextStyles.title0),
+                Text('${AppLocalizations.of(context)!.applicationStatus}: ${order.status}', style: AppTextStyles.title0),
                 const SizedBox(height: 4.0),
                 Text(
-                  AppLocalizations.of(context)!.sum + ": " + formatCurrency.format(order.total),
+                  "${AppLocalizations.of(context)!.sum}: ${formatCurrency.format(order.total)}",
                   style: AppTextStyles.title0,
                 ),
                 const SizedBox(height: 4.0),
                 SizedBox(
                   width: 400,
                   child: Text(
-                    AppLocalizations.of(context)!.address + ": " + order.customerAddress!,
+                    "${AppLocalizations.of(context)!.address}: ${order.customerAddress!}",
                     style: AppTextStyles.title0,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,

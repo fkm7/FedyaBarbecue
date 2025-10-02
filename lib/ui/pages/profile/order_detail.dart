@@ -10,7 +10,8 @@ class OrderDetailPage extends StatelessWidget {
   static const route = '/orderDetail';
 
   final Order order;
-  final fCurrency = NumberFormat.currency(locale: 'uz_UZ', name: 'сум', decimalDigits: 0);
+  final fCurrency =
+      NumberFormat.currency(locale: 'uz_UZ', name: 'сум', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,11 @@ class OrderDetailPage extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * .75,
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
               itemCount: order.orderItemObj!.length,
-              itemBuilder: (context, index) => OrderItemView(orderItemObj: order.orderItemObj![index]),
+              itemBuilder: (context, index) =>
+                  OrderItemView(orderItemObj: order.orderItemObj![index]),
             ),
           ),
           Expanded(
@@ -58,7 +61,8 @@ class OrderItemView extends StatelessWidget {
   OrderItemView({Key? key, required this.orderItemObj}) : super(key: key);
 
   final OrderItemObj orderItemObj;
-  final fCurrency = NumberFormat.currency(locale: 'uz_UZ', name: 'сум', decimalDigits: 0);
+  final fCurrency =
+      NumberFormat.currency(locale: 'uz_UZ', name: 'сум', decimalDigits: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +76,8 @@ class OrderItemView extends StatelessWidget {
             width: 72.0,
             child: CachedNetworkImage(
               imageUrl: orderItemObj.productObj!.productPhotoObj!.first.photo!,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
               fit: BoxFit.cover,
               height: 72.0,
               width: 72.0,

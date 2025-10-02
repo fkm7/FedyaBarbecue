@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CartPage extends StatefulWidget {
-   CartPage({Key? key, required this.pageInMain}) : super(key: key);
+  const CartPage({Key? key, required this.pageInMain}) : super(key: key);
 
   static const route = '/order';
 
@@ -36,7 +36,7 @@ class _CartPageState extends State<CartPage> {
           ),
           actions: [
             IconButton(
-              icon: const Icon(FontAwesomeIcons.trashAlt),
+              icon: const Icon(FontAwesomeIcons.trashCan),
               onPressed: () => showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -125,9 +125,7 @@ class _CartPageState extends State<CartPage> {
             height: mediaQuery.size.height * .075,
             minWidth: mediaQuery.size.width,
             color: AppColors.orange,
-            onPressed: cart.products.isNotEmpty
-                ? () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartOrderPage(cart: cart)))
-                : null,
+            onPressed: cart.products.isNotEmpty ? () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartOrderPage(cart: cart))) : null,
             child: Text(
               AppLocalizations.of(context)!.makeOrder,
               style: AppTextStyles.title0,

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "753238647374",
-    "project_id": "fedya-shaslik",
-    "storage_bucket": "fedya-shaslik.appspot.com"
+    "project_number": "36233298887",
+    "project_id": "fedyashashlik-4444e",
+    "storage_bucket": "fedyashashlik-4444e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:753238647374:android:4fd61a876330c9a024591f",
+        "mobilesdk_app_id": "1:36233298887:android:f8bb10945196e40c094fe2",
         "android_client_info": {
-          "package_name": "uz.ds.fedya_shashlik"
+          "package_name": "com.example.fedya_shashlik"
         }
       },
       "oauth_client": [
         {
-          "client_id": "753238647374-9dp82hrrboj7o70bs55fpv2bdtp1nvh4.apps.googleusercontent.com",
+          "client_id": "36233298887-uaphsqt4i4m7i9mkcktjshq044tvsg3s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDcKoBdfVb1yFpB7XplW5vUFbxJc-cKNA0"
+          "current_key": "AIzaSyA4YHUjDS4HD7v9v-2-pf8F1DO6Oca-kxM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "753238647374-9dp82hrrboj7o70bs55fpv2bdtp1nvh4.apps.googleusercontent.com",
+              "client_id": "36233298887-uaphsqt4i4m7i9mkcktjshq044tvsg3s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

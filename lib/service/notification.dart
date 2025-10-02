@@ -20,7 +20,7 @@ AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotification
 
 NotificationDetails platformChannelSpecifics = NotificationDetails(
   android: androidPlatformChannelSpecifics,
-  iOS: const IOSNotificationDetails(
+  iOS: const DarwinNotificationDetails(
     presentAlert: true,
     presentBadge: true,
     presentSound: true,
@@ -37,24 +37,18 @@ class PushNotificationService {
   }
 
   void requestPermission() async {
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(alert: true, badge: true, sound: true);
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.requestPermissions(alert: true, badge: true, sound: true);
   }
 
   Future initialize() async {
     requestPermission();
     tz.initializeTimeZones();
-    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('ic_launcher');
-    IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(onDidReceiveLocalNotification: onDidReceiveLocalNotification);
-    InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: onSelectNotification);
+    const initializationSettingsAndroid = AndroidInitializationSettings('ic_launcher');
+    var initializationSettingsIOS = DarwinInitializationSettings(onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(_channel);
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(_channel);
   }
 
   // Future<void> setRepeatableNotification(Task task) async {

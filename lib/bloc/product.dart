@@ -8,8 +8,10 @@ class ProductBloc extends ChangeNotifier {
   List<Product> get products => _products;
 
   void fetchProducts() async {
-    _products = await ApiService.getInstance().getProducts();
-    notifyListeners();
+    try {
+      _products = await ApiService.getInstance().getProducts();
+      notifyListeners();
+    } catch (e) {}
   }
 
   List<Product> getByCategory(int id) {

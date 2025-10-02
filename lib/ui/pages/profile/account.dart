@@ -6,7 +6,6 @@ import 'package:fedya_shashlik/ui/theme/color.dart';
 import 'package:fedya_shashlik/ui/theme/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountPage extends StatelessWidget {
-  AccountPage({Key? key}) : super(key: key);
+  const AccountPage({Key? key}) : super(key: key);
 
   static const route = '/account';
 
@@ -60,8 +59,8 @@ class AccountPage extends StatelessWidget {
           const Divider(color: AppColors.grey, height: 2.0),
           ListTile(
             onTap: () async {
-              if (await canLaunch('tel:+998906024795')) {
-                await launch('tel:+998906024795');
+              if (await canLaunchUrl(Uri(scheme: 'tel', path: '+0001231223'))) {
+                await launchUrl(Uri(scheme: 'tel', path: '+9921313213'));
               }
             },
             leading: const Icon(Icons.feedback),
@@ -69,8 +68,8 @@ class AccountPage extends StatelessWidget {
             trailing: IconButton(
               icon: const Icon(Icons.arrow_forward_ios),
               onPressed: () async {
-                if (await canLaunch('tel:+998906024795')) {
-                  await launch('tel:+998906024795');
+                if (await canLaunchUrl(Uri(scheme: 'tel', path: '+998906024690'))) {
+                  await launchUrl(Uri(scheme: 'tel', path: '+998906024521'));
                 }
               },
             ),
